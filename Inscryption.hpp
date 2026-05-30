@@ -3,8 +3,7 @@
 #include <SFML/Audio.hpp>
 #include <SFML/OpenGL.hpp>
 #include <iostream>
-#include <stdlib.h>
-#include <algorithm>
+#include <sstream>
 #include <vector>
 #include <string>
 #include <memory>
@@ -60,13 +59,13 @@ private:
 	//END SIGILS
 	s_deck_icon, s_bone_cost, s_bone_total, s_blood_cost, s_sacrifice_simbol, s_null;
 
-	sf::Clock animation_clock, delay_clock, bell_clock, scale_delay_clock, sacrifice_wait, delta_Time, card_Perishing, cursor_clock;
+	sf::Clock animation_clock, delay_clock, bell_clock, scale_delay_clock, sacrifice_wait, delta_Time, cursor_clock;
 	sf::Mouse mouse;
 	sf::Music music1, music2;
-	sf::SoundBuffer blip_buffer1, blip_buffer2, blip_buffer3, card_attack1_buffer, exit_dialog_buffer, continue_fits_buffer;
-	sf::Sound blip1, blip2, blip3, card_attack1_sound, exit_dialogue_sound, continue_fits_sound;
+	sf::SoundBuffer blip_buffer1, blip_buffer2, blip_buffer3, card_attack1_buffer, exit_dialog_buffer, continue_fits_buffer, card_perish_buffer, card_sacrificed_buffer;
+	sf::Sound blip1, blip2, blip3, card_attack1_sound, exit_dialogue_sound, continue_fits_sound, card_succumb_sound;
 	sf::RectangleShape Background_Frame, Layer_Effect;
-	sf::Vector2f Object_Moving_Coords, Object_Coords;
+	sf::Vector2f PositionObject, DesiredPosition;
 	sf::Color DarkRed, DarkGray;
 	sf::Shader ScreenShader;
 
@@ -84,12 +83,12 @@ private:
 	short HP, ATTK, SCALE_POINTS, SCALE_DAMAGE, CARD_SELECTED, SIGIL_1, SIGIL_2, PLAYER_PLACEMENT;
 	unsigned short WIDTH, HEIGHT, C_WORD, TEXT_TIME, DIALOGUE_STEP, CHAR_VAR, BUTTON_STATE, BELL_STATE, TURN_OWNER, TURN_NUMBER, DECK_SIZE, CARD_NUMBER,
 	BLOOD_COST, BONE_COST, BONE_COUNTER, CARD_STEP, CARDS_ON_BOARD, SACRIFICES, RARITY, XANDY_MULTIPLIER, LESHY_SCALE_POINTS,
-	PLAYER_SCALE_POINTS, CURSOR_STATE, PLAYER_INPUT, BATTERY_CHARGE;
-	float VELOCITY, COLOR_OPACITY, CARD_OPACITY, SCALE_INCLINATION_CONST, DELTA_TIME;
+	PLAYER_SCALE_POINTS, CURSOR_STATE, PLAYER_INPUT, BATTERY_CHARGE, DELTA_TIME;
+	float VELOCITY, COLOR_OPACITY, CARD_OPACITY, SCALE_INCLINATION_CONST;
 
 	enum buttonStates
 	{
-		BUTTON_IDLE, BUTTON_HOVER, BUTTON_PRESSED
+		BUTTON_IDLE, BUTTON_PRESSED = 2
 	};
 	enum Inputs
 	{
@@ -142,9 +141,7 @@ protected:
 	void Create_Window();
 	void CardPerishing();
 	void CardAttackPlayer();
-	void CardAttackLeshy();
-	void AnimationHandler();
-
+	
 public:
 
 	void GameLoop();

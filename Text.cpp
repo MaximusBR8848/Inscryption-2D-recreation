@@ -1,5 +1,4 @@
 #include "Text.hpp"
-#include <iostream>
 
 void Text::initFont()
 {

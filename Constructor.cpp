@@ -3,12 +3,12 @@
 
 InscryptionGame::InscryptionGame()
 {
-	Window_Name = "Inscryption Forbiden Version v_02 alpha";
+	Window_Name = "Inscryption Forbiden Version v_4 alpha";
 
 	WIDTH = 1280;
 	HEIGHT = 720;
 
-	window = std::make_shared<sf::RenderWindow>
+	window = std::make_shared <sf::RenderWindow>
 	(
 	sf::VideoMode(WIDTH,HEIGHT),
 	Window_Name,
@@ -28,22 +28,22 @@ InscryptionGame::InscryptionGame()
 	PLAYER_INPUT = IDDLE;
 	CARD_NUMBER = Squirrel;
 	PLAYER_PLACEMENT = -1;
-	XANDY_MULTIPLIER = 3;
+	XANDY_MULTIPLIER = (int)3;
 	CARD_OPACITY = 254;
 	CARD_SELECTED = -1;
 	CARDS_ON_BOARD = 0;
 	BATTERY_CHARGE = 0;
 	DIALOGUE_STEP = 0;
 	COLOR_OPACITY = 0;
-	BONE_COUNTER = 100; //changed
+	BONE_COUNTER = 0; //changed
 	SCALE_POINTS = 5;
 	SCALE_DAMAGE = 5;
 	LESHY_SCALE_POINTS = 0;
 	PLAYER_SCALE_POINTS = 0;
 	TURN_NUMBER = 1;
 	VELOCITY = 0;
-	DELTA_TIME = 0.83;
-	TEXT_TIME = 75;
+	DELTA_TIME = 16;
+	TEXT_TIME = 80;
 	DECK_SIZE = 15;
 	SACRIFICES = 0;
 	BLOOD_COST = 0;
@@ -59,11 +59,11 @@ InscryptionGame::InscryptionGame()
 	sacrificing = 0;
 	sacrificed = 0;
 	fullscreen = 0;
-	leshy_mad = 0;//also mod
+	leshy_mad = 0;
 	on_board = 0;
 	smashing = 0;
 	ocupied = 0;
-	menu = 1; //modified
+	menu = 1;
 
 	DarkGray.r = 10;
 	DarkGray.g = 10;
@@ -75,63 +75,71 @@ InscryptionGame::InscryptionGame()
 	DarkRed.b = 0;
 	DarkRed.a = 255;
 
-	Object_Moving_Coords.x = 0;
-	Object_Moving_Coords.y = 0;
-	Object_Coords.x = 0;
-	Object_Coords.y = 0;
+	PositionObject.x = WIDTH * 2.0f;
+	PositionObject.y = 520;
 
-	music1.openFromFile("assets\\gbc_battle_leshy.flac");
+	DesiredPosition.x = 0;
+	DesiredPosition.y = 0;
+
+	music1.openFromFile("assets\\gbc_battle_leshy.ogg");
 	music1.setLoop(true);
 	music1.setVolume(70);
-	music2.openFromFile("assets\\gbc_battle_basic.flac");
+	music2.openFromFile("assets\\gbc_battle_basic.ogg");
 	music2.setLoop(true);
-	music2.setVolume(200);
+	music2.setVolume(150);
 	music2.play();
 
-	blip_buffer1.loadFromFile("assets\\chipBlip2.wav");
+	blip_buffer1.loadFromFile("assets\\chipBlip5.wav");
 	blip1.setBuffer(blip_buffer1);
 	blip_buffer2.loadFromFile("assets\\chipBlip4.wav");
 	blip2.setBuffer(blip_buffer2);
 	blip_buffer3.loadFromFile("assets\\chipBlip3.wav");
 	blip3.setBuffer(blip_buffer3);
+
 	continue_fits_buffer.loadFromFile("assets\\crunch_short2.wav");
 	continue_fits_sound.setBuffer(continue_fits_buffer);
+
 	exit_dialog_buffer.loadFromFile("assets\\chipDelay_2.wav");
 	exit_dialogue_sound.setBuffer(exit_dialog_buffer);
 
-	card_attack1_buffer.loadFromFile("assets\\pixel_card_attack_nature.wav");
+	card_perish_buffer.loadFromFile("assets\\pixel_card_death.ogg");
+	card_sacrificed_buffer.loadFromFile("assets\\pixel_card_sacrifice.ogg");
+
+	card_succumb_sound.setBuffer(card_sacrificed_buffer);
+
+	card_attack1_buffer.loadFromFile("assets\\pixel_card_attack_nature.ogg");
 	card_attack1_sound.setBuffer(card_attack1_buffer);
 
 	t_cursors_map.loadFromFile("assets\\cursor_icons.png");
 	s_cursor.setTexture(t_cursors_map);
-	s_cursor.setScale(XANDY_MULTIPLIER, XANDY_MULTIPLIER);
+	s_cursor.setScale(2, 2);
 	mouse.setPosition(sf::Vector2i(window->getPosition().x + WIDTH / 2, window->getPosition().y + HEIGHT / 2));
 
 	t_menu_background.loadFromFile("assets\\startscreen_background_PART1.png");
 	s_menu_background.setTexture(t_menu_background);
-	s_menu_background.setScale(3.2,3.2);
+	s_menu_background.setScale((float)3.2,(float)3.2);
 
 	Layer_Effect.setSize(sf::Vector2f(WIDTH, HEIGHT));
-	Layer_Effect.setFillColor(sf::Color(0,0,0,COLOR_OPACITY));
+	Layer_Effect.setFillColor(sf::Color((int)0,(int)0,(int)0,(int)COLOR_OPACITY));
 
 	t_icon_plate_dark.loadFromFile("assets\\startscreen_slot_PART1.png");
 	t_icon_plate_midlight.loadFromFile("assets\\startscreen_slot_mediumlighted_PART1.png");
 	t_icon_plate_light.loadFromFile("assets\\startscreen_slot_highlighted_PART1.png");
-	s_icon_plate_attach.setTexture(t_icon_plate_light);
+	s_icon_plate_attach.setTexture(t_icon_plate_dark);
 	s_icon_plate_attach.setPosition(sf::Vector2f(568,215));
 	s_icon_plate_attach.setScale(XANDY_MULTIPLIER,XANDY_MULTIPLIER);
 
 	t_icon_continue.loadFromFile("assets\\menucard_continue.png");
 	s_icon_continue.setTexture(t_icon_continue);
-	s_icon_continue.setScale(XANDY_MULTIPLIER,XANDY_MULTIPLIER);
 	s_icon_continue.setPosition(sf::Vector2f(WIDTH, 520));
+	s_icon_continue.setScale(XANDY_MULTIPLIER,XANDY_MULTIPLIER);
 
 	t_text_box.loadFromFile("assets\\text_box_nature.png");
 	s_text_box.setTexture(t_text_box);
 	s_text_box.setScale(2.5,2.5);
 	s_text_box.setPosition(sf::Vector2f(280,540));
 
-	Background_Frame.setSize(sf::Vector2f(109.2,109.2));
+	Background_Frame.setSize(sf::Vector2f((float)109.2,(float)109.2));
 	Background_Frame.setFillColor(sf::Color(216, 228, 164, 255));
 	Background_Frame.setOutlineColor(sf::Color::Black);
 	Background_Frame.setOutlineThickness(-2);
@@ -140,7 +148,7 @@ InscryptionGame::InscryptionGame()
 	t_face_leshy.loadFromFile("assets\\leshy_pixel_portraits.png");
 	s_face_leshy.setTexture(t_face_leshy);
 	s_face_leshy.setPosition(Background_Frame.getPosition().x - 25, Background_Frame.getPosition().y - 10);
-	s_face_leshy.setScale(1.8,1.8);
+	s_face_leshy.setScale((float)1.8,(float)1.8);
 
 	font.loadFromFile("assets\\Marksman.ttf");
 	l_text.setFont(font);
@@ -150,7 +158,7 @@ InscryptionGame::InscryptionGame()
 	l_text.setFillColor(DarkGray);
 	s_text_leshy = "";
 
-	t_board.loadFromFile("assets\\gbc_board_nature.jpg");
+	t_board.loadFromFile("assets\\gbc_board_nature.png");
 	s_board.setTexture(t_board);
 	s_board.setScale(XANDY_MULTIPLIER, XANDY_MULTIPLIER);
 	s_board.setPosition(sf::Vector2f(-125, -140));
@@ -161,8 +169,9 @@ InscryptionGame::InscryptionGame()
 	s_bell.setTextureRect(sf::IntRect(0, 0, 91, 34));
 	s_bell.setPosition(sf::Vector2f(s_board.getPosition().x + 200, s_board.getPosition().y + 272));
 
-	t_card_placement_l_prev.loadFromFile("assets\\gbc_cardslots_0.png");
+	t_card_placement_l_prev.loadFromFile("assets\\gbc_cardslots_nature.png");
 	s_card_placement_l_prev.setTexture(t_card_placement_l_prev);
+	s_card_placement_l_prev.setTextureRect(sf::IntRect(1, 1, 42, 30));
 	s_card_placement_l_prev.setScale(XANDY_MULTIPLIER, XANDY_MULTIPLIER);
 
 	l_card_placement_prev.push_back(s_card_placement_l_prev);
@@ -175,12 +184,14 @@ InscryptionGame::InscryptionGame()
 
 	t_card_placement_p.loadFromFile("assets\\gbc_cardslots_nature.png");
 	s_card_placement_p.setTexture(t_card_placement_p);
+	s_card_placement_p.setTextureRect(sf::IntRect(1, 33, 42, 88));
 	s_card_placement_p.setRotation(180);
 	s_card_placement_p.setOrigin(0,56);
-	s_card_placement_p.setScale(-XANDY_MULTIPLIER, XANDY_MULTIPLIER);
+	s_card_placement_p.setScale(-(float)XANDY_MULTIPLIER, (float)XANDY_MULTIPLIER);
 
 	t_card_placement_l.loadFromFile("assets\\gbc_cardslots_nature.png");
 	s_card_placement_l.setTexture(t_card_placement_l);
+	s_card_placement_l.setTextureRect(sf::IntRect(1, 33, 42, 88));
 	s_card_placement_l.setScale(XANDY_MULTIPLIER, XANDY_MULTIPLIER);
 
 	l_card_placement.push_back(s_card_placement_l);
@@ -204,7 +215,7 @@ InscryptionGame::InscryptionGame()
 	s_scale_indicator2.setTexture(t_scale_indicator2);
 
 	s_scale_indicator2.setPosition(s_bell.getPosition().x, s_bell.getPosition().y + s_bell.getGlobalBounds().height + 35);
-	s_scale_indicator1.setPosition(s_scale_indicator2.getPosition().x + 45.5 * XANDY_MULTIPLIER, s_scale_indicator2.getPosition().y - 24);
+	s_scale_indicator1.setPosition(s_scale_indicator2.getPosition().x + (float)45.5 * XANDY_MULTIPLIER, s_scale_indicator2.getPosition().y - (int)24);
 
 	s_scale_indicator1.setScale(XANDY_MULTIPLIER, XANDY_MULTIPLIER);
 	s_scale_indicator2.setScale(XANDY_MULTIPLIER, XANDY_MULTIPLIER);
@@ -234,8 +245,8 @@ InscryptionGame::InscryptionGame()
 	{
 		v_scale_plate.push_back(s_scale4);
 	}
-	v_scale_plate[0].setPosition(s_scale3.getPosition().x - s_scale3.getGlobalBounds().width / 1.6, s_scale3.getPosition().y - 3);
-	v_scale_plate[1].setPosition(s_scale3.getPosition().x + s_scale3.getGlobalBounds().width / 1.6, s_scale3.getPosition().y - 3);
+	v_scale_plate[0].setPosition(s_scale3.getPosition().x - s_scale3.getGlobalBounds().width / (float)1.6, s_scale3.getPosition().y - (int)3);
+	v_scale_plate[1].setPosition(s_scale3.getPosition().x + s_scale3.getGlobalBounds().width / (float)1.6, s_scale3.getPosition().y - (int)3);
 
 	scale_text.setFont(font);
 	scale_text.setFillColor(sf::Color(230,230,185,255));
@@ -259,7 +270,7 @@ InscryptionGame::InscryptionGame()
 	s_hammer.setScale(XANDY_MULTIPLIER, XANDY_MULTIPLIER);
 	s_hammer.setTextureRect(sf::IntRect(47,34,29,20));
 	s_hammer.setColor(sf::Color(215, 226, 163, 255));
-	s_hammer.setPosition(s_scale1.getPosition().x + 125, p_card_placement[0].getPosition().y + p_card_placement[0].getGlobalBounds().height - 21);
+	s_hammer.setPosition(s_scale1.getPosition().x + 125, s_board.getPosition().y + 607);
 
 	t_card_description1.loadFromFile("assets\\gbc_cardbattle_10.png");
 	t_card_description2.loadFromFile("assets\\gbc_cardbattle_19.png");
@@ -493,4 +504,6 @@ InscryptionGame::InscryptionGame()
 	//Death Section
 	//Deck Builder
 	//Polish (not the nacionality or language)
+
+	//Goodbye my beloved creation, I may never come back to you but you were extremely significant for me...
 }

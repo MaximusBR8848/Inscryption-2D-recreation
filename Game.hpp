@@ -4,6 +4,7 @@
 
 #include "Card.hpp"
 #include "Text.hpp"
+#include "Board.hpp"
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <map>
@@ -41,7 +42,7 @@ private:
 	//audio properties
 	sf::SoundBuffer bufferMusic;
 
-	//Board
+	//Board & UI
 	sf::Texture textureBoard, texturePlacement, texturePlacementPrev, textureCursor;
 	sf::Sprite spriteBoard, spritePlacement, spritePlacementPrev, spriteCursor;
 	std::vector<sf::Sprite> vector_spritePlacement, vector_spritePlacementPrev;

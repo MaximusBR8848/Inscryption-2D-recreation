@@ -2,20 +2,21 @@
 #define BOARD_H
 
 #include <SFML/Graphics.hpp>
+#include <array>
 
 class Board
 {
 private:
 
 	sf::Text textCardDescripton, textScale, textDeckCounter, textBoneCounter;
-	sf::Sprite spriteCardDescripton, spriteScale, spriteDeckCounter, spriteBoneCounter;
+	sf::Texture texture;
+	sf::Sprite spriteCardDescripton, spriteDeckCounter, spriteBoneCounter, spriteScale;
 
-	std::vector<sf::Sprite> vector_spriteScale;
-
-	sf::Texture* texture;
+	std::vector<sf::Sprite> vect_spriteScale;
 
 	void initIcons();
 	void initText();
+	void setPosition();
 
 public:
 
@@ -24,7 +25,6 @@ public:
 
 	void Update();
 	void Render(sf::RenderTarget* target);
-
 };
 
 #endif

@@ -75,13 +75,16 @@ void InscryptionGame::DrawGame()
 		}
 		for (int i = 0; i < v_card.size(); i++)
 		{
-			window->draw(v_card[i]);
-			window->draw(v_creature_card[i]);
-			window->draw(v_card_cost[i]);
-			window->draw(v_card_sigil_1[i]);
-			window->draw(v_card_sigil_2[i]);
-			window->draw(v_text_card_attk[i]);
-			window->draw(v_text_card_hp[i]);
+			if (v_card[i].getPosition().x < WIDTH - 1 && v_card[i].getGlobalBounds().width > 0 && v_card[i].getPosition().y < HEIGHT - 1 && v_card[i].getGlobalBounds().height > 0)
+			{
+				window->draw(v_card[i]);
+				window->draw(v_creature_card[i]);
+				window->draw(v_card_cost[i]);
+				window->draw(v_card_sigil_1[i]);
+				window->draw(v_card_sigil_2[i]);
+				window->draw(v_text_card_attk[i]);
+				window->draw(v_text_card_hp[i]);
+			}
 		}
 		for (auto& s_sacrifice_simbol : v_sacrifice_simbol)
 		{
@@ -190,6 +193,20 @@ void InscryptionGame::Events()
 			fullscreen = !fullscreen;
 			Create_Window();
 		}
+		else if (event.type == sf::Event::LostFocus || !window->hasFocus())
+		{
+			if (menu == false)
+				music1.pause();
+			else
+				music2.pause();
+		}
+		else if (event.type == sf::Event::GainedFocus)
+		{
+			if (menu == false)
+				music1.play();
+			else
+				music2.play();
+		}
 
 		if (PRESS_INPUTS)
 		{
@@ -215,8 +232,8 @@ void InscryptionGame::Events()
 
 		switch (fullscreen)
 		{
-		case 0: s_cursor.setPosition(mouse.getPosition(*window).x, mouse.getPosition(*window).y + BUTTON_STATE); break;
-		case 1:	s_cursor.setPosition(mouse.getPosition().x, mouse.getPosition().y + BUTTON_STATE); break;
+		case 0: s_cursor.setPosition((float)mouse.getPosition(*window).x, (float)mouse.getPosition(*window).y + (short)BUTTON_STATE); break;
+		case 1:	s_cursor.setPosition((float)mouse.getPosition().x, (float)mouse.getPosition().y + (short)BUTTON_STATE); break;
 		}
 	}
 }
@@ -807,7 +824,7 @@ void InscryptionGame::CreateCard()
 
 		v_text_card_hp[CARD_STEP].setString(std::to_string(HP));
 		v_text_card_attk[CARD_STEP].setString(std::to_string(ATTK));
-		card_opacity.push_back(CARD_OPACITY);
+		card_opacity.push_back((std::int16_t)CARD_OPACITY);
 
 		BLOOD_COST = 0;
 		BONE_COST = 0;
@@ -829,8 +846,9 @@ void InscryptionGame::DrawCard()//112 px
 
 		bool isMouseOverCardHand = s_cursor.getPosition().x >= v_card[i].getPosition().x
 			&& s_cursor.getPosition().x <= v_card[i].getPosition().x + v_card[i].getGlobalBounds().width
-			&& s_cursor.getPosition().y >= 520
-			&& s_cursor.getPosition().y <= 645;
+			&& s_cursor.getPosition().y >= v_card[i].getPosition().y
+			&& s_cursor.getPosition().y <= v_card[i].getPosition().y + v_card[i].getGlobalBounds().height
+			&& !v_on_board[i];
 
 		bool isMouseOverCardBoard = s_cursor.getPosition().x >= v_card[i].getPosition().x
 			&& s_cursor.getPosition().x <= v_card[i].getPosition().x + v_card[i].getGlobalBounds().width
@@ -864,11 +882,11 @@ void InscryptionGame::DrawCard()//112 px
 					v_card[i].setPosition(sf::Vector2f(v_card[i].getPosition().x - velocity_x, v_card[i].getPosition().y));
 				}
 
-				if (isMouseOverCardHand	&& v_card[i].getPosition().y > 505 && positionating == false && sacrificing == false)
+				if (isMouseOverCardHand && positionating == false && sacrificing == false)
 				{
 					//make border
 				}
-				else if (!(isMouseOverCardHand) && v_card[i].getPosition().y < 520 && positionating == false && sacrificing == false)
+				else if (!(isMouseOverCardHand) && positionating == false && sacrificing == false)
 				{
 					//undo border
 				}
@@ -893,16 +911,6 @@ void InscryptionGame::CardAttackPlayer()
 	}
 }
 
-void InscryptionGame::CardAttackLeshy()
-{
-
-}
-
-void InscryptionGame::AnimationHandler()
-{
-	
-}
-
 void InscryptionGame::PlayCard()
 {
 	bool isMouseOverHammer = s_cursor.getPosition().x >= s_hammer.getPosition().x
@@ -921,8 +929,9 @@ void InscryptionGame::PlayCard()
 		{
 			bool isMouseOverCardHand = s_cursor.getPosition().x >= v_card[i].getPosition().x
 				&& s_cursor.getPosition().x <= v_card[i].getPosition().x + v_card[i].getGlobalBounds().width
-				&& s_cursor.getPosition().y >= 520
-				&& s_cursor.getPosition().y <= 645;
+				&& s_cursor.getPosition().y >= v_card[i].getPosition().y
+				&& s_cursor.getPosition().y <= v_card[i].getPosition().y + v_card[i].getGlobalBounds().height
+				&& !v_on_board[i];
 
 			bool isMouseOverCardBoard = s_cursor.getPosition().x >= v_card[i].getPosition().x
 				&& s_cursor.getPosition().x <= v_card[i].getPosition().x + v_card[i].getGlobalBounds().width
@@ -966,9 +975,9 @@ void InscryptionGame::PlayCard()
 				&& v_ocupied[I] == false && positionating == true
 				&& sacrifice_wait.getElapsedTime().asMilliseconds() >= 500)
 			{
-				Object_Moving_Coords.x = p_card_placement[I].getPosition().x;
-				Object_Moving_Coords.y = p_card_placement[I].getPosition().y;
-				v_card[CARD_SELECTED].setPosition(sf::Vector2f(Object_Moving_Coords.x, Object_Moving_Coords.y));
+				DesiredPosition.x = p_card_placement[I].getPosition().x;
+				DesiredPosition.y = p_card_placement[I].getPosition().y;
+				v_card[CARD_SELECTED].setPosition(sf::Vector2f(DesiredPosition.x, DesiredPosition.y));
 				player_placement[i] = I;
 				v_on_board[CARD_SELECTED] = 1;
 				CARD_SELECTED = -1;
@@ -977,7 +986,7 @@ void InscryptionGame::PlayCard()
 				bone_text.setString("x" + std::to_string(BONE_COUNTER));
 				CARDS_ON_BOARD++;
 
-				std::cout << CARD_SELECTED << " |Your card is in: " << player_placement[i] << std::endl;
+				std::cout << "Your card is in: " << player_placement[i] << std::endl;
 			}
 			//SACRIFICING
 			else if (BUTTON_STATE == BUTTON_PRESSED && isMouseOverCardBoard && isMouseOverPlacement
@@ -997,7 +1006,6 @@ void InscryptionGame::PlayCard()
 					sacrificing = 0;
 					SACRIFICES = 0;
 					positionating = 1;
-					std::cout << "Good luck :) - " << CARD_SELECTED << std::endl;
 				}
 				if (SACRIFICES < blood_cost[CARD_SELECTED])
 				{
@@ -1027,21 +1035,24 @@ void InscryptionGame::CardPerishing()
 	{
 		for (int I = 0; I < 4; I++)
 		{
-			if (v_sacrificed[i] == true && card_opacity[i] > 15 && card_Perishing.getElapsedTime().asMicroseconds() >= 10 && !sacrificing
-				&& p_card_placement[I].getGlobalBounds() == v_card[i].getGlobalBounds())
+			if (v_sacrificed[i] == true && card_opacity[i] > 10 && !sacrificing
+				&& p_card_placement[I].getPosition() == v_card[i].getPosition())
 			{
-				card_opacity[i] -= DELTA_TIME;
-				v_card[i].setColor(sf::Color(card_opacity[i], card_opacity[i], card_opacity[i], 255));
-				v_creature_card[i].setColor(sf::Color(card_opacity[i], card_opacity[i], card_opacity[i], 255));
-				v_card_cost[i].setColor(sf::Color(card_opacity[i], card_opacity[i], card_opacity[i], 255));
-				v_sacrifice_simbol[I].setColor(sf::Color(255, 255, 255, 255));
+				card_opacity[i] -= (std::int16_t)10;
+				v_card[i].setColor(sf::Color((std::int8_t)card_opacity[i], (std::int8_t)card_opacity[i], (std::int8_t)card_opacity[i], (std::int8_t)255));
+				v_creature_card[i].setColor(sf::Color((std::int8_t)card_opacity[i], (std::int8_t)card_opacity[i], (std::int8_t)card_opacity[i], (std::int8_t)255));
+				v_card_cost[i].setColor(sf::Color((std::int8_t)card_opacity[i], (std::int8_t)card_opacity[i], (std::int8_t)card_opacity[i], (std::int8_t)255));
 				player_placement[i] = -1;
-				card_Perishing.restart();
+				if (card_succumb_sound.Playing)
+				{
+					card_succumb_sound.play();
+				}
 			}
-			else if (v_sacrificed[i] && !sacrificing && card_opacity[i] <= 15)
+			else if (v_sacrificed[i] && !sacrificing && card_opacity[i] <= 10)
 			{
+				v_on_board[i] = 0;
 				v_card[i].setPosition(WIDTH,HEIGHT);
-				v_sacrifice_simbol[I].setColor(sf::Color(255, 255, 255, 0));
+				v_sacrifice_simbol[I].setColor(sf::Color((std::int8_t)255, (std::int8_t)255, (std::int8_t)255, (std::int8_t)0));
 			}
 		}
 	}
@@ -1107,68 +1118,87 @@ void InscryptionGame::MenuEvents()
 		&& s_cursor.getPosition().y >= s_icon_continue.getPosition().y
 		&& s_cursor.getPosition().y <= s_icon_continue.getPosition().y + 168;
 
-	unsigned short Time1, Time2, Time3;
-
-	float velocity_sideways = s_icon_continue.getPosition().x / 350;
-	float velocity_vertical = s_icon_continue.getPosition().y / 200;
-
-	Time1 = 800;
-	Time2 = 1600;
-	Time3 = 2400;
+	unsigned short Time;
+	Time = 1600;
 
 	if (!continue_move)
 	{
-		if (delay_clock.getElapsedTime().asMilliseconds() >= Time1 && delay_clock.getElapsedTime().asMilliseconds() < Time2)
+		if (delay_clock.getElapsedTime().asMilliseconds() < Time)
 		{
 			s_icon_plate_attach.setTexture(t_icon_plate_dark);
 		}
-		else if (delay_clock.getElapsedTime().asMilliseconds() >= Time2 && delay_clock.getElapsedTime().asMilliseconds() < Time3)
+		else if (delay_clock.getElapsedTime().asMilliseconds() >= Time && delay_clock.getElapsedTime().asMilliseconds() < Time * 2)
 		{
 			s_icon_plate_attach.setTexture(t_icon_plate_midlight);
 		}
-		else if (delay_clock.getElapsedTime().asMilliseconds() >= Time3)
+		else if (delay_clock.getElapsedTime().asMilliseconds() >= Time * 2)
 		{
-			s_icon_plate_attach.setTexture(t_icon_plate_light);
 			delay_clock.restart();
 		}
 	}
 
-	if (s_icon_continue.getPosition().x > s_icon_plate_attach.getPosition().x + 10)
+	float TimeHorizontal, TimeVertical;
+	TimeHorizontal = 4.0f;
+	TimeVertical = 0.5f;
+
+	float TimeElapsed;
+	TimeElapsed = animation_clock.getElapsedTime().asSeconds();
+
+	sf::Vector2f NewPos;
+
+	float t1 = TimeElapsed / TimeHorizontal;
+	float t2 = TimeElapsed / TimeVertical;
+
+	//float increment = 1.0f / (60 * TimeHorizontal);
+	//t1 += increment;
+
+	//583,215
+	DesiredPosition = sf::Vector2f(578, 215);
+
+	NewPos.x = PositionObject.x + (DesiredPosition.x - PositionObject.x) * t1;
+	NewPos.y = PositionObject.y + (DesiredPosition.y - PositionObject.y) * t2;
+
+	if (!continue_move && t1 <= 1.0f)
 	{
-		s_icon_continue.setPosition(sf::Vector2f(s_icon_continue.getPosition().x - velocity_sideways, s_icon_continue.getPosition().y));
+		s_icon_continue.setPosition(NewPos.x, s_icon_continue.getPosition().y);
 	}
-	else if (BUTTON_STATE == BUTTON_PRESSED && isMouseOverIcon && continue_move == false)
+	///*
+	else if (BUTTON_STATE == BUTTON_PRESSED && isMouseOverIcon && !continue_move)
 	{
 		continue_move = 1;
 		continue_fits_sound.play();
+		music2.setVolume(0);
+		animation_clock.restart();
 	}
-	else if (s_icon_continue.getPosition().y > s_icon_plate_attach.getPosition().y + 10 && continue_move == true)
+	else if (t2 <= 1.0f && continue_move == true)
 	{
-		s_icon_plate_attach.setTexture(t_icon_plate_light);
-		s_icon_continue.setPosition(sf::Vector2f(s_icon_continue.getPosition().x, s_icon_continue.getPosition().y - velocity_vertical));
 		delay_clock.restart();
+		s_icon_plate_attach.setTexture(t_icon_plate_light);
+		s_icon_continue.setPosition(s_icon_continue.getPosition().x, NewPos.y);
 	}
-	else if (delay_clock.getElapsedTime().asMilliseconds() >= 500 && continue_move == true && COLOR_OPACITY < 254)
+	else if (delay_clock.getElapsedTime().asMilliseconds() >= 1500 && continue_move == true && menu)
 	{
-		Layer_Effect.setFillColor(sf::Color(0, 0, 0, COLOR_OPACITY));
-		COLOR_OPACITY += 1 - DELTA_TIME;
-		if (COLOR_OPACITY >= 253)
+		COLOR_OPACITY += 3;
+		Layer_Effect.setFillColor(sf::Color(0, 0, 0, (std::int8_t)COLOR_OPACITY));
+
+		if (COLOR_OPACITY == 255)
 		{
 			animation_clock.restart();
-			music2.stop();
 			menu = 0;
 		}
 	}
+	//*/
 }
 
 void InscryptionGame::GameLogic()
 {
-	if (COLOR_OPACITY >= 10)
+	if (COLOR_OPACITY != 0 && animation_clock.getElapsedTime().asSeconds() >= 1)
 	{
-		COLOR_OPACITY -= 1 - DELTA_TIME;
-		Layer_Effect.setFillColor(sf::Color(0, 0, 0, COLOR_OPACITY));
+		COLOR_OPACITY -= 3;
+		Layer_Effect.setFillColor(sf::Color((std::int8_t)0, (std::int8_t)0, (std::int8_t)0, (std::int8_t)COLOR_OPACITY));
 		if (COLOR_OPACITY <= 10)
 		{
+			music2.stop();
 			music1.play();
 			leshy_mad = 1;
 		}
@@ -1189,7 +1219,7 @@ void InscryptionGame::GameLogic()
 		default: leshy_mad = 0; exit_dialogue_sound.play(); TURN_OWNER = PLAYER_TURN; break;
 		}
 
-		CHAR_VAR = s_text_leshy.length() + 1;
+		CHAR_VAR = static_cast<unsigned short>(s_text_leshy.length() + 1);
 		animation_clock.restart();
 		s_text_leshy.resize(C_WORD);
 		C_WORD++;
@@ -1197,28 +1227,28 @@ void InscryptionGame::GameLogic()
 
 		if (s_text_leshy.size() >= 45 && s_text_leshy.size() <= 78)
 		{
-			l_text.setPosition(s_text_box.getPosition().x + 30, s_text_box.getPosition().y + 20);
+			l_text.setPosition(s_text_box.getPosition().x + (float)30, s_text_box.getPosition().y + (float)20);
 		}
 		else if (s_text_leshy.size() > 78)
 		{
-			l_text.setPosition(s_text_box.getPosition().x + 30, s_text_box.getPosition().y + 7.5);
+			l_text.setPosition(s_text_box.getPosition().x + (float)30, s_text_box.getPosition().y + (float)8);
 		}
 		else
 		{
-			l_text.setPosition(s_text_box.getPosition().x + 30, s_text_box.getPosition().y + 32.5);
+			l_text.setPosition(s_text_box.getPosition().x + (float)30, s_text_box.getPosition().y + (float)31);
 		}
 
-		if (s_text_leshy.length() % 3)
+		if (s_text_leshy.length() % 5)
 		{
-			blip3.play();
+			blip1.play();
 		}
-		else if (s_text_leshy.length() % 3 && !(s_text_leshy.length() % 4))
+		else if (s_text_leshy.length() % 6)
 		{
 			blip2.play();
 		}
-		else
+		else if (s_text_leshy.length() % 7)
 		{
-			blip1.play();
+			blip3.play();
 		}
 	}
 	else if (PLAYER_INPUT == SKIP_INPUT && delay_clock.getElapsedTime().asMilliseconds() >= 300)
@@ -1252,8 +1282,8 @@ void InscryptionGame::ScaleLogic()
 				}
 				else
 				{
-					v_scale_plate[0].setPosition(s_scale3.getPosition().x - s_scale3.getGlobalBounds().width / 1.6, s_scale3.getPosition().y - 3);
-					v_scale_plate[1].setPosition(s_scale3.getPosition().x + s_scale3.getGlobalBounds().width / 1.6, s_scale3.getPosition().y - 3);
+					v_scale_plate[0].setPosition(s_scale3.getPosition().x - s_scale3.getGlobalBounds().width / (float)1.6, s_scale3.getPosition().y - 3);
+					v_scale_plate[1].setPosition(s_scale3.getPosition().x + s_scale3.getGlobalBounds().width / (float)1.6, s_scale3.getPosition().y - 3);
 				}
 			}
 			else if (SCALE_DAMAGE > SCALE_POINTS)
@@ -1273,8 +1303,8 @@ void InscryptionGame::ScaleLogic()
 				}
 				else
 				{
-					v_scale_plate[0].setPosition(s_scale3.getPosition().x - s_scale3.getGlobalBounds().width / 1.6, s_scale3.getPosition().y - 3);
-					v_scale_plate[1].setPosition(s_scale3.getPosition().x + s_scale3.getGlobalBounds().width / 1.6, s_scale3.getPosition().y - 3);
+					v_scale_plate[0].setPosition(s_scale3.getPosition().x - s_scale3.getGlobalBounds().width / (float)1.6, s_scale3.getPosition().y - 3);
+					v_scale_plate[1].setPosition(s_scale3.getPosition().x + s_scale3.getGlobalBounds().width / (float)1.6, s_scale3.getPosition().y - 3);
 				}
 			}
 
@@ -1293,29 +1323,31 @@ void InscryptionGame::GameLoop()
 {
 	while (window->isOpen())
 	{
-		if (delta_Time.getElapsedTime().asMilliseconds() >= DELTA_TIME && window->hasFocus())
+		if (delta_Time.getElapsedTime().asMilliseconds() >= DELTA_TIME)
 		{
-			delta_Time.restart();
 			Events();
-			CursorStates();
-			AnimationHandler();
-			if (menu)
+			if (window->hasFocus())
 			{
-				MenuEvents();
-			}
-			else
-			{
-				GameLogic();
-				TurnEvents();
-				if (!leshy_mad)
+				delta_Time.restart();
+				CursorStates();
+				if (menu)
 				{
-					ScaleLogic();
-					DrawCard();
-					PlayCard();
-					CardPerishing();
+					MenuEvents();
 				}
+				else
+				{
+					GameLogic();
+					TurnEvents();
+					if (!leshy_mad)
+					{
+						ScaleLogic();
+						DrawCard();
+						PlayCard();
+						CardPerishing();
+					}
+				}
+				DrawGame();
 			}
-			DrawGame();
 		}
 	}
 }

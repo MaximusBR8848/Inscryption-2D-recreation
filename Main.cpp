@@ -3,8 +3,7 @@
 
 int main()
 {
-	unsigned short choice;
-	choice = 0;
+	unsigned short choice = 0;
 
 	std::cout << "Which one? \n\nInscryption new logic: Press 1\nInscryption old logic: Press 2\n" << std::endl;
 	std::cin >> choice;

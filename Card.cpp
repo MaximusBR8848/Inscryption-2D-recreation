@@ -2,16 +2,11 @@
 #include "Game.hpp"
 #include "Text.hpp"
 
-#include <iostream>
-#include <cctype>
-#include <algorithm>
-
 void Card::initData()
 {
 	std::uniform_int_distribution<int> RandomCard(0, 14);
 	CARD_ID = RandomCard(Random_Card_Var);
 
-	//to do: list of card stats
 	switch (CARD_ID)
 	{
 	case Squirrel:
@@ -154,18 +149,18 @@ void Card::initData()
 		break;
 	}
 
-	std::transform(Name.begin(), Name.end(), Name.begin(), ::tolower);
+	std::transform(Name.begin(), Name.end(), Name.begin(), std::tolower);
 	texture_Creature.loadFromFile("assets\\pixelportrait_" + Name + ".png");
 
 	std::stringstream ss(Sigils);
 	std::getline(ss, FirstSigil, ',');
 
-	std::transform(FirstSigil.begin(), FirstSigil.end(), FirstSigil.begin(), ::tolower);
+	std::transform(FirstSigil.begin(), FirstSigil.end(), FirstSigil.begin(), std::tolower);
 	texture_Sigil1.loadFromFile("assets\\pixelability_" + FirstSigil + ".png");
 
 	std::getline(ss, SecondSigil, ',');
 
-	std::transform(SecondSigil.begin(), SecondSigil.end(), SecondSigil.begin(), ::tolower);
+	std::transform(SecondSigil.begin(), SecondSigil.end(), SecondSigil.begin(), std::tolower);
 	texture_Sigil2.loadFromFile("assets\\pixelability_" + SecondSigil + ".png");
 }
 
@@ -220,8 +215,6 @@ void Card::initSprite()
 
 Card::Card()
 {
-	this->movementSpeed = 0.0f;
-
 	this->initData();
 	this->initTexture();
 	this->initSprite();
@@ -235,25 +228,19 @@ Card::~Card()
 
 Card::Card(sf::Texture * texture_creature, sf::Texture * texture_card, float pos_y, float pos_x, float dir_x, float dir_y, float movement_speed)
 {
-	CARD_ID = Squirrel;
-
-	boneCost = 0;
-	bloodCost = 0;
-
-	attack = 0;
-	hp = 1;
-
-	SizeX = 3;
-	SizeY = 3;
+	this->initData();
 
 	this->cardSprite.setTexture(*texture_card);
 	this->creatureSprite.setTexture(*texture_creature);
 
-	pos_x = 200;
-	pos_y = 100;
+	sf::Mouse mouse;
 
-	this->cardSprite.setPosition(pos_x,pos_y);
+	pos_x = mouse.getPosition().x;
+	pos_y = mouse.getPosition().y;
 
+	this->cardSprite.setPosition(pos_x, pos_y);
+
+	movement_speed = 0.0;
 	this->movementSpeed = movement_speed;
 }
 
@@ -284,7 +271,6 @@ void Card::Update()
 		this->sigilSprite1.setPosition(cardSprite.getPosition().x + 39, cardSprite.getPosition().y + 93);
 
 	this->sigilSprite2.setPosition(this->sigilSprite1.getPosition().x + 51, this->sigilSprite1.getPosition().y);
-
 }
 
 void Card::Render(sf::RenderTarget* target)

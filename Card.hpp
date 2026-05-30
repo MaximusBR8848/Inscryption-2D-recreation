@@ -6,6 +6,8 @@
 #include <string>
 #include <random>
 #include <sstream>
+#include <cctype>
+#include <algorithm>
 
 class Card
 {
@@ -29,11 +31,13 @@ private:
 
 	sf::Vector2f Position;
 
+	std::vector <sf::Texture> texture_Creature_Vector, texture_Sigil_Vector;
+
 	enum CardID
 	{
-		Squirrel, Wolf, Coyote, Bloodhound, Kingfisher, Magpie, Raven, BlackGoat, ElkFawn, Elk, MooseBuck, WolfCub, Alpha, MantisGod, RingWorm,
+		ORIGIN_ENUM_CARDS = -1, Squirrel, Wolf, Coyote, Bloodhound, Kingfisher, Magpie, Raven, BlackGoat, ElkFawn, Elk, MooseBuck, WolfCub, Alpha, MantisGod, RingWorm,
 		Geck, Ouroboros, BullFrog, DireWolfPup, DireWolf, Stoat, Adder, Cat, MoleMan, Mole, Urayuli, Skunk, Warren, FieldMice, RatKing, Grizzly,
-		Opossum, Rabbit, UndeadCat, Starvation
+		Opossum, Rabbit, UndeadCat, Starvation, END_OF_ENUM_CARDS
 	};
 
 	void initData();
