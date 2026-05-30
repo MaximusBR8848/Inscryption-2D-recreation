@@ -55,22 +55,614 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="assets\cursor_icons.png">
+    <None Include="Dialogues.list">
+      <Filter>Arquivos de Recurso</Filter>
+    </None>
+    <None Include="assets\gbc_battle_basic.flac">
+      <Filter>Arquivos de Recurso</Filter>
+    </None>
+    <None Include="assets\gbc_battle_basic.ogg">
+      <Filter>Arquivos de Recurso</Filter>
+    </None>
+    <None Include="assets\gbc_battle_leshy.flac">
+      <Filter>Arquivos de Recurso</Filter>
+    </None>
+    <None Include="assets\gbc_battle_leshy.ogg">
+      <Filter>Arquivos de Recurso</Filter>
+    </None>
+    <None Include="assets\gbc_battle_win.ogg">
+      <Filter>Arquivos de Recurso</Filter>
+    </None>
+    <None Include="assets\glitch.ogg">
+      <Filter>Arquivos de Recurso</Filter>
+    </None>
+    <None Include="assets\pixel_card_attack_nature.ogg">
+      <Filter>Arquivos de Recurso</Filter>
+    </None>
+    <None Include="assets\pixel_card_death.ogg">
+      <Filter>Arquivos de Recurso</Filter>
+    </None>
+    <None Include="assets\pixel_card_sacrifice.ogg">
+      <Filter>Arquivos de Recurso</Filter>
+    </None>
+    <None Include="assets\pixel_leshy_greeting.ogg">
+      <Filter>Arquivos de Recurso</Filter>
+    </None>
+    <None Include="assets\pixel_leshy_greeting_2.ogg">
+      <Filter>Arquivos de Recurso</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\Exit_Card_Hand_f2.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\Exit_Card_Hand_f3.png">
       <Filter>Arquivos de Recurso</Filter>
     </Image>
     <Image Include="assets\gbc_bellbutton_nature.png">
       <Filter>Arquivos de Recurso</Filter>
     </Image>
+    <Image Include="assets\gbc_board_nature.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
     <Image Include="assets\gbc_cardbattle.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\gbc_cardbattle_0.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\gbc_cardbattle_1.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\gbc_cardbattle_2.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\gbc_cardbattle_3.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\gbc_cardbattle_4.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\gbc_cardbattle_6.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\gbc_cardbattle_8.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\gbc_cardbattle_9.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\gbc_cardbattle_10.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\gbc_cardbattle_18.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\gbc_cardbattle_19.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\gbc_cardbattle_25.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\gbc_cardslots_0.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\gbc_cardslots_nature.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\leshy_board_hole.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\leshy_camera.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\leshy_pixel_portraits.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\menucard_concede.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\menucard_continue.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\menucard_library.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\menucard_library_flash.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\menucard_library_greyed.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\menucard_library_greyed_0.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\menucard_library_greyed_1.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\menucard_library_greyed_2.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\menucard_library_greyed_3.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\menucard_library_greyed_4.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\menucard_library_greyed_5.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\menucard_library_greyed_6.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\menucard_library_greyed_7.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\menucard_library_greyed_8.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\menucard_library_greyed_9.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\menucard_library_greyed_10.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\menucard_newgame_greyed.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\menucard_options.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\menucard_startscreen.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\nature_attackanim_f1.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\nature_attackanim_f2.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\nature_attackanim_f3.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\nature_temple_indoors_floor.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\nature_temple_indoors_objects.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\options_ui.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\overworld_npc_leshy_0.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\overworld_npc_leshy_1.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pack_opening_ui.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pausemenu_frame.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixel_activated_ability_button.png">
       <Filter>Arquivos de Recurso</Filter>
     </Image>
     <Image Include="assets\pixel_card_costs.png">
       <Filter>Arquivos de Recurso</Filter>
     </Image>
+    <Image Include="assets\pixel_card_empty.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixel_card_empty_rare.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixel_card_sacrifice_marker.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixel_card_submerge.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixel_cardback.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixel_special_stat_icons.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixel_special_stat_icons_1.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixel_special_stat_icons_6.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelability_bonedigger.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelability_buffneighbours.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelability_createegg.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelability_deathshield.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelability_deathtouch.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelability_doublestrike.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelability_drawant.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelability_drawcopy.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelability_drawcopyondeath.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelability_drawrabbits.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelability_evolve.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelability_flying.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelability_gainattackonkill.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelability_guarddog.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelability_loot.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelability_none.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelability_opponentbones.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelability_preventattack.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelability_quadruplebones.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelability_reach.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelability_sacrificial.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelability_sharp.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelability_stinky.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelability_strafe.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelability_strafepush.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelability_strafeswap.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelability_submerge.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelability_tripleblood.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelability_tristrike.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelability_tutor.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelability_whackamole.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_adder.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_alpha.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_antqueen.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_blackgoat.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_bloodhound.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_bull.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_bullfrog.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_cat.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_cat_undead.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_coyote.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_cuckoo.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_deadpets.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_direwolf.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_direwolfcub.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_elk.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_elkfawn.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_fieldmice.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_flyingant.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_geck.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_grizzly.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_hawk.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_hodag.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_kingfisher.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_lammergeier.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_magpie.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_mantisgod.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_mole.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_moleman.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_moosebuck.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_mudturtle.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_opossum.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_otter.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_ouroboros.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_rabbit.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_raccoon.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_ratking.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_raven.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_redhart.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_ringworm.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_skunk.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_squirrel.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_starvation.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_stoat.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_tadpole.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_urayuli.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_warren.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_wolf.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_wolfcub.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\pixelportrait_wolverine.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\startscreen_background_PART1.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\startscreen_slot_highlighted_PART1.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\startscreen_slot_mediumlighted_PART1.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\startscreen_slot_PART1.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\text_box_nature.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\tiny_border_f1.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\tiny_border_f2.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\tiny_border_f3.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\tiny_border_f4.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\tiny_border_f5.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\Title_Pixel.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\autosave_icon.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\border_f1.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\border_f2.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\border_f3.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\border_f4.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\border_f5.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\card_collection_ui.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\collision_volume_button.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\cursor_icons.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\deck_building_ui.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\excess_damage_panel.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\Exit_Card_f1.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\Exit_Card_f2.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\Exit_Card_f3.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\Exit_Card_f4.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\Exit_Card_f5.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\Exit_Card_f6.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\Exit_Card_Hand_f1.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Dialogues.list">
+    <Media Include="assets\gbc_battle_win.wav">
       <Filter>Arquivos de Recurso</Filter>
-    </None>
+    </Media>
+    <Media Include="assets\glitch.wav">
+      <Filter>Arquivos de Recurso</Filter>
+    </Media>
+    <Media Include="assets\pixel_camera_flash.wav">
+      <Filter>Arquivos de Recurso</Filter>
+    </Media>
+    <Media Include="assets\pixel_card_attack_nature.wav">
+      <Filter>Arquivos de Recurso</Filter>
+    </Media>
+    <Media Include="assets\pixel_card_sacrifice.wav">
+      <Filter>Arquivos de Recurso</Filter>
+    </Media>
+    <Media Include="assets\pixel_leshy_greeting.wav">
+      <Filter>Arquivos de Recurso</Filter>
+    </Media>
+    <Media Include="assets\pixel_leshy_greeting_2.wav">
+      <Filter>Arquivos de Recurso</Filter>
+    </Media>
+    <Media Include="assets\chipBlip1.wav">
+      <Filter>Arquivos de Recurso</Filter>
+    </Media>
+    <Media Include="assets\chipBlip2.wav">
+      <Filter>Arquivos de Recurso</Filter>
+    </Media>
+    <Media Include="assets\chipBlip3.wav">
+      <Filter>Arquivos de Recurso</Filter>
+    </Media>
+    <Media Include="assets\chipBlip4.wav">
+      <Filter>Arquivos de Recurso</Filter>
+    </Media>
+    <Media Include="assets\chipBlip5.wav">
+      <Filter>Arquivos de Recurso</Filter>
+    </Media>
+    <Media Include="assets\chipBlip6.wav">
+      <Filter>Arquivos de Recurso</Filter>
+    </Media>
+    <Media Include="assets\chipDelay_2.wav">
+      <Filter>Arquivos de Recurso</Filter>
+    </Media>
+    <Media Include="assets\crunch_blip.wav">
+      <Filter>Arquivos de Recurso</Filter>
+    </Media>
+    <Media Include="assets\crunch_short#2.wav">
+      <Filter>Arquivos de Recurso</Filter>
+    </Media>
+    <Media Include="assets\crunch_short2.wav">
+      <Filter>Arquivos de Recurso</Filter>
+    </Media>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="assets\inscryption_bold.ttf">
+      <Filter>Arquivos de Recurso</Filter>
+    </Font>
+    <Font Include="assets\Marksman.ttf">
+      <Filter>Arquivos de Recurso</Filter>
+    </Font>
   </ItemGroup>
 </Project>
